@@ -12,6 +12,11 @@ public class OperationHandlerProviderImpl implements OperationHandlerProvider {
 
     @Override
     public OperationHandler get(FruitTransaction.Operation operation) {
-        return handlers.get(operation);
+        OperationHandler handler = handlers.get(operation);
+
+        if (handler == null) {
+            throw new RuntimeException("No handler found for operation: " + operation);
+        }
+        return handler;
     }
 }
